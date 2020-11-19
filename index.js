@@ -1131,7 +1131,7 @@ midiIn.on('message', function(d, message) {
             //if the rotation isn't found then the control wont be set so it wont emit an action
             if(response.state) { response.control = 'knob'; }
         } else if (value === JOG) {
-            response.name = 'jog/shuttle';
+            response.name = 'JOG/SHUTTLE';
             response.state = getRotation(state);
             if(response.state) { response.control = 'jog/shuttle'; }
 

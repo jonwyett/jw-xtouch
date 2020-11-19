@@ -87,7 +87,7 @@ xt.controlMap({
    'knob': {
        'CH1': {
            'right': { myPanVar += 1; },
-           'left': { myPanVar -1; }
+           'left': { myPanVar -=1; }
        }
    } 
 });
@@ -219,6 +219,7 @@ __States:__
 up/down 
 
 ## Jog/Shuttle - the wheel in the bottom-right
+Note that the control is type jog/shuttle and it's name is JOG/SHUTTLE for case consistency with other controls/names
 
 __States:__  
 right/left
@@ -344,8 +345,8 @@ Removes an existing group
 * __setFader(fader, value):__
 Sets the position of a fader based on its mode and resolution
 -fader{string} - the name of the fader
--value{number} - the new value/position of the fader
-NOTES:
+-value{number} - the new value/position of the fader  
+NOTES:  
 This is not super-accurate and needs improvement. In decibel mode near unity it works fine but if you send -30 in decibel mode and then touch the fader it will probably register that it's at -29 or -31 or something like that. Since it's not that accurate to begin with when you are in position mode it only uses 7-bit precision regardless of how high you set the resolution.
 </br> 
 
@@ -398,8 +399,8 @@ Moves all fader to either -infinity (-100) or unity (0) regardless of their mode
 Set the mode (decibel/position) and resolution of an individual fader
 -fader{string} - the name of the fader
 -mode{string} - the mode decibel/position
--resolution{number} - the resolution, see notes
-NOTES:  
+-resolution{number} - the resolution, see notes  
+NOTES:    
 In position mode the resolution should be a whole number representing the min-max value the fader will return when it's moved from the bottom to the top. In decibel mode the resolution is a fraction or whole number, such as 0.5 to return half-decibel changes. Decibel mode always returns the values printed on the fader.
 As best I can determine the physical faders theoretically output in 14-bit resolution but in practice it's closer to 10 bits (1024) and really only consistently accurate to 7 bits (128). I'd recommend setting the position resolution to 100, 128, 256 or at most 512 (there's no technical reason to use powers of two honestly, 500 or 398 or 7 are all perfectly fine resolution values).
 In decibel mode the scale isn't linear, with much more physical space near unity (0) then there is closer to -infinity so if you set the resolution to 0.125 or something very precise like that you will only get those small fractions near unity. I'd recommend not using precision below 0.5 but you may use: 0.1, 0.125, 0.25, 0.5, 1, 5, or 10. If you do use a more precise resolution then 0.5 you wont get each value in sequence (0.125, 0.25. 0.375, etc.) instead it will almost always skip since it isn't really that accurate.
@@ -407,17 +408,17 @@ It should also be noted that depending on the mode/resolution the fader may retu
 </br> 
 
 * __setSignalLevel(channel, level):__
-Set the signal level indicator for a channel. By default the X-Touch will only light the signal for a moment and then show it dropping off.
--channel{string} - the channel name
--level{number} - the level, 0-8. 8 will illuminate the clip light until you set the signal to 0.
+Set the signal level indicator for a channel. By default the X-Touch will only light the signal for a moment and then show it dropping off.  
+-channel{string} - the channel name  
+-level{number} - the level, 0-8. 8 will illuminate the clip light until you set the signal to 0.  
 </br> 
 
 * __clearSignalBars():__
-If you send the max value to a signal bar it will illuminate the "clip" light permanently. This will clear that indicator. To clear a single signal use setSignalLevel(channel, 0)
+If you send the max value to a signal bar it will illuminate the "clip" light permanently. This will clear all of those indicators. To clear a single signal use setSignalLevel(channel, 0)
 </br> 
 
 * __holdSignalLevel(channel, level):__
-This will hold the signal level for the given value. It does this by sending the signal level several times a second, so it is recommended not to use this for more then one or two channels at a time because it will saturate the midi communication. Quite frankly you probable shouldn't use it at all.
+This will hold the signal level for the given value. It does this by sending the signal level several times a second, so it is recommended not to use this for more then one or two channels at a time because it will saturate the midi communication. Quite frankly you probable shouldn't use it at all.  
 -channel{string} - the channel
 -level{number} - the level, 1-8
 </br> 
