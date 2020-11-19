@@ -1,0 +1,28 @@
+{
+  "name": "jw-xtouch",
+  "version": "1.0.0",
+  "description": "Wrapper for communicating with the Behringer X-Touch via midi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonwyett/jw-xtouch.git"
+  },
+  "keywords": [
+    "x-touch",
+    "x32",
+    "behringer",
+    "midi"
+  ],
+  "author": "Jonathan Wyett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonwyett/jw-xtouch/issues"
+  },
+  "homepage": "https://github.com/jonwyett/jw-xtouch#readme",
+  "dependencies": {
+    "midi": "^1.0.0"
+  }
+}
