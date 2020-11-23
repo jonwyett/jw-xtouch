@@ -168,9 +168,7 @@ function sendMidi(midiMsg) {
         fail();
     } else if (midiMsg.length !== 3) {
         fail();
-    } else if (!inRange(midiMsg[0]) ||
-                !inRange(midiMsg[1]) ||
-                !inRange(midiMsg)[2]) {
+    } else if (!inRange(midiMsg[1])) {
         fail();
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "jw-xtouch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wrapper for communicating with the Behringer X-Touch via midi",
   "main": "index.js",
   "scripts": {
